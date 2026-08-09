@@ -9,6 +9,7 @@ Each skill ships as its own installable plugin, so you can add just the ones you
 | Plugin | What it does |
 |---|---|
 | [`guided-discovery`](./plugins/guided-discovery) | Turns an app, codebase, architecture, concept, task, or product into a scaffolded learning path — coaching a developer to build understanding through guided exploration instead of handing them an answer dump. |
+| [`task-orchestrate`](./plugins/task-orchestrate) | Turns a task, ticket, issue, or requirements doc into a dependency-aware, verifiable, executor-routed plan file, then drives it to completion in dependency waves with per-task verification. |
 
 ## Install
 
@@ -17,6 +18,7 @@ Add the marketplace once, then install any plugin from it:
 ```
 /plugin marketplace add Austin-jc/agent-skills
 /plugin install guided-discovery@jc-agent-skills
+/plugin install task-orchestrate@jc-agent-skills
 ```
 
 Pull in new or updated plugins later with `/plugin marketplace update jc-agent-skills`.

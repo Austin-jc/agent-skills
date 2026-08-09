@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "task-orchestrate",
+  "displayName": "Task Orchestrate",
+  "version": "0.1.0",
+  "description": "Turn any task, ticket, issue, or requirements doc into a dependency-aware, verifiable, executor-routed plan in a single self-contained plan file, then drive it to completion in dependency waves with per-task verification.",
+  "author": {
+    "name": "Austin-jc"
+  },
+  "repository": "https://github.com/Austin-jc/agent-skills",
+  "license": "MIT",
+  "keywords": [
+    "planning",
+    "orchestration",
+    "task-decomposition",
+    "workflow",
+    "dependency-graph",
+    "verification"
+  ]
+}

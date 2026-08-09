@@ -18,6 +18,18 @@
         "name": "Austin-jc"
       },
       "license": "MIT"
+    },
+    {
+      "name": "task-orchestrate",
+      "source": "./plugins/task-orchestrate",
+      "description": "Turn a task, ticket, issue, or requirements doc into a dependency-aware, verifiable, executor-routed plan file, then drive it to completion in dependency waves with per-task verification.",
+      "version": "0.1.0",
+      "category": "workflow",
+      "tags": ["planning", "orchestration", "task-decomposition", "verification"],
+      "author": {
+        "name": "Austin-jc"
+      },
+      "license": "MIT"
     }
   ]
 }
