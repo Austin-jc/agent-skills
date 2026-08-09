@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "jc-agent-skills",
+  "description": "A curated marketplace of Agent Skills packaged as Claude Code plugins.",
+  "owner": {
+    "name": "Austin-jc",
+    "url": "https://github.com/Austin-jc"
+  },
+  "plugins": [
+    {
+      "name": "guided-discovery",
+      "source": "./plugins/guided-discovery",
+      "description": "Turn an app, codebase, architecture, concept, task, or product into a scaffolded learning path — coaching a developer to build understanding through guided exploration instead of an answer dump.",
+      "version": "0.1.0",
+      "category": "learning",
+      "tags": ["onboarding", "mentoring", "teaching", "developer-experience"],
+      "author": {
+        "name": "Austin-jc"
+      },
+      "license": "MIT"
+    }
+  ]
+}

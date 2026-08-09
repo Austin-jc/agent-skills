@@ -1,53 +1,63 @@
 # Agent Skills
 
-A collection of [Agent Skills](https://code.claude.com/docs/en/skills) — reusable, model-invoked capabilities that extend Claude with focused expertise for specific kinds of work.
+A [Claude Code plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces) that distributes [Agent Skills](https://code.claude.com/docs/en/skills) — reusable, model-invoked capabilities that extend Claude with focused expertise for specific kinds of work.
 
-Each skill is a self-contained directory with a `SKILL.md` file. The YAML frontmatter (`name` + `description`) tells Claude when to reach for the skill; the body and any bundled reference files tell it how to do the work.
+Each skill ships as its own installable plugin, so you can add just the ones you want. Marketplace name: **`jc-agent-skills`**.
 
-## Skills
+## Plugins
 
-| Skill | What it does |
+| Plugin | What it does |
 |---|---|
-| [`guided-discovery`](./guided-discovery) | Turns an app, codebase, architecture, concept, task, or product into a scaffolded learning path — coaching a developer to build understanding through guided exploration instead of handing them an answer dump. |
+| [`guided-discovery`](./plugins/guided-discovery) | Turns an app, codebase, architecture, concept, task, or product into a scaffolded learning path — coaching a developer to build understanding through guided exploration instead of handing them an answer dump. |
 
-## Using these skills
+## Install
 
-### Claude Code
+Add the marketplace once, then install any plugin from it:
 
-Copy (or symlink) a skill directory into a skills location Claude Code reads:
-
-- **Personal** (available in every project): `~/.claude/skills/`
-- **Project** (shared with your team via the repo): `.claude/skills/`
-
-```bash
-# personal
-cp -r guided-discovery ~/.claude/skills/
-
-# or per-project
-mkdir -p .claude/skills && cp -r guided-discovery .claude/skills/
+```
+/plugin marketplace add Austin-jc/agent-skills
+/plugin install guided-discovery@jc-agent-skills
 ```
 
-Claude loads each skill's `name` and `description` and invokes the skill on its own when a request matches. You can also invoke one explicitly with `/guided-discovery`.
+Pull in new or updated plugins later with `/plugin marketplace update jc-agent-skills`.
 
-### Other agent surfaces
+Once installed, Claude reads each skill's `name` and `description` and invokes it on its own when a request matches. You can also trigger one explicitly with its slash command, e.g. `/guided-discovery`.
 
-The skills here are plain Markdown and portable. Anywhere that supports the Agent Skills format, point it at the skill directory. The `description` field is what drives automatic triggering, so keep it intact when copying.
+### Use a skill without the marketplace
+
+The skills are plain, portable Markdown. To use one directly, copy its `SKILL.md` (and any `references/`) into a skills location Claude Code reads:
+
+- **Personal** (every project): `~/.claude/skills/`
+- **Project** (shared via the repo): `.claude/skills/`
+
+```bash
+cp -r plugins/guided-discovery/skills/guided-discovery ~/.claude/skills/
+```
 
 ## Repository layout
 
 ```
-<skill-name>/
-├── SKILL.md              # frontmatter (name, description) + instructions
-└── references/           # optional supporting files loaded on demand
-    └── *.md
+agent-skills/                                  # marketplace root
+├── .claude-plugin/
+│   └── marketplace.json                       # catalog of plugins
+└── plugins/
+    └── <plugin-name>/
+        ├── .claude-plugin/
+        │   └── plugin.json                    # plugin manifest
+        └── skills/
+            └── <skill-name>/
+                ├── SKILL.md                   # frontmatter (name, description) + instructions
+                └── references/                # optional files loaded on demand
 ```
 
 ## Adding a skill
 
-1. Create a directory named for the skill (kebab-case).
-2. Add a `SKILL.md` with `name` and `description` in the frontmatter. Write the `description` in the third person and be specific about *when* to trigger — that text is all Claude sees when deciding whether to use the skill.
-3. Keep `SKILL.md` focused; push long tables, question banks, and templates into `references/` and reference them from the body so they load only when needed.
-4. Add a row to the **Skills** table above.
+1. Create `plugins/<name>/` with a `.claude-plugin/plugin.json` manifest (`name` is the only required field; add `version`, `description`, `author`, `license`, `keywords`).
+2. Put the skill under `plugins/<name>/skills/<name>/SKILL.md`. Write the `description` in the third person and be specific about *when* to trigger — that text is all Claude sees when deciding whether to use the skill. Push long tables, question banks, and templates into `references/` so they load only when needed.
+3. Register the plugin in `.claude-plugin/marketplace.json` with a `./plugins/<name>` source, and add a row to the **Plugins** table above.
+4. Validate before publishing: `claude plugin validate ./plugins/<name> --strict`.
+
+> **Note:** the marketplace is named `jc-agent-skills`, not `agent-skills` — the latter is a [reserved name](https://code.claude.com/docs/en/plugin-marketplaces) for official Anthropic use.
 
 ## License
 

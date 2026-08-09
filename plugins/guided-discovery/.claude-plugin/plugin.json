@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "guided-discovery",
+  "displayName": "Guided Discovery",
+  "version": "0.1.0",
+  "description": "Break down applications, codebases, architectures, concepts, tasks, and products into scaffolded learning paths that coach developers to build understanding through guided discovery instead of handing them answers.",
+  "author": {
+    "name": "Austin-jc"
+  },
+  "repository": "https://github.com/Austin-jc/agent-skills",
+  "license": "MIT",
+  "keywords": [
+    "onboarding",
+    "mentoring",
+    "learning",
+    "teaching",
+    "developer-experience",
+    "codebase-exploration"
+  ]
+}
