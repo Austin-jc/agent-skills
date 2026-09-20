@@ -7,16 +7,17 @@ hosting Austin's agent skills.
 
 ```
 /plugin marketplace add austin-jc/agent-skills
-/plugin install agent-skills@agent-skills
+/plugin install ticket-review@agent-skills
 ```
 
-Update later with `/plugin marketplace update`.
+Update later with `/plugin marketplace update`. To try local changes before pushing,
+add the clone path instead: `/plugin marketplace add ./path/to/agent-skills`.
 
-To try local changes before pushing, add the clone path instead:
+## Plugins
 
-```
-/plugin marketplace add ./path/to/agent-skills
-```
+| Plugin | What it does |
+|---|---|
+| [`ticket-review`](plugins/ticket-review) | A plain-language **Ticket Brief** before implementation and a **Change Report** after, for people who delegate implementation and do not read code. Ships `/ticket-brief` and `/change-report`, plus scripts that normalize the ticket, classify the diff, and fail a document that breaks the template. |
 
 ## Layout
 
@@ -24,39 +25,33 @@ To try local changes before pushing, add the clone path instead:
 .claude-plugin/
 └── marketplace.json              # marketplace manifest — lists the plugins below
 plugins/
-└── agent-skills/
+└── ticket-review/
     ├── .claude-plugin/
     │   └── plugin.json           # plugin manifest
+    ├── commands/                 # slash commands
     └── skills/
-        └── new-skill/
-            └── SKILL.md          # one directory per skill
+        └── ticket-review/
+            ├── SKILL.md
+            ├── references/       # templates and examples, read on demand
+            └── scripts/          # standard-library Python helpers
+.claude/skills/                   # skills for working on THIS repo, not shipped
 ```
 
-`skills/` is auto-discovered, so adding a skill is just adding a directory with
-a `SKILL.md`. A plugin can also carry `commands/`, `agents/`, `hooks/`, and
+`skills/` and `commands/` are auto-discovered, so adding a skill to a plugin is just
+adding a directory with a `SKILL.md`. A plugin can also carry `agents/`, `hooks/`, and
 `.mcp.json` at its root — see the
 [plugins reference](https://code.claude.com/docs/en/plugins-reference).
 
-## Add a skill
+## Add a plugin
 
-Create `plugins/agent-skills/skills/<name>/SKILL.md` with frontmatter:
+1. Create `plugins/<name>/.claude-plugin/plugin.json` with at least a `name`.
+2. Add skills under `plugins/<name>/skills/<skill>/SKILL.md`.
+3. Add an entry to the `plugins` array in `.claude-plugin/marketplace.json` pointing at
+   `./plugins/<name>`.
+4. Validate: `claude plugin validate .` and `claude plugin validate ./plugins/<name>`.
 
-```yaml
----
-name: my-skill
-description: What it does. Use when <the situation that should trigger it>.
----
-```
-
-The `description` is what Claude matches on when deciding to load the skill, so
-name the trigger conditions explicitly. The bundled `new-skill` skill walks
-through the rest.
-
-## Add another plugin
-
-Create `plugins/<plugin-name>/.claude-plugin/plugin.json`, then add an entry to
-the `plugins` array in `.claude-plugin/marketplace.json` pointing at
-`./plugins/<plugin-name>`.
+The `new-skill` skill in `.claude/skills/` walks through the details and loads
+automatically when you work in this repo.
 
 ## License
 

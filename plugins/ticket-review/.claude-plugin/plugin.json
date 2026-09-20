@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "ticket-review",
+  "displayName": "Ticket Review",
+  "version": "0.1.0",
+  "description": "Brackets every delegated ticket with two plain-language documents: a Ticket Brief before implementation and a Change Report after, with deterministic scripts doing the parsing and checking.",
+  "author": {
+    "name": "Austin Con",
+    "url": "https://github.com/austin-jc"
+  },
+  "homepage": "https://github.com/austin-jc/agent-skills/tree/main/plugins/ticket-review",
+  "repository": "https://github.com/austin-jc/agent-skills",
+  "license": "MIT",
+  "keywords": ["tickets", "jira", "code-review", "documentation", "change-report"]
+}

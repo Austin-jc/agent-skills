@@ -12,10 +12,10 @@
   },
   "plugins": [
     {
-      "name": "agent-skills",
-      "source": "./plugins/agent-skills",
-      "displayName": "Agent Skills",
-      "description": "A collection of reusable agent skills for Claude Code",
+      "name": "ticket-review",
+      "source": "./plugins/ticket-review",
+      "displayName": "Ticket Review",
+      "description": "A Ticket Brief before implementation and a Change Report after, both in plain language, with scripts that do the parsing and enforce the templates.",
       "version": "0.1.0",
       "author": {
         "name": "Austin Con",
@@ -23,8 +23,14 @@
       },
       "repository": "https://github.com/austin-jc/agent-skills",
       "license": "MIT",
-      "category": "productivity",
-      "keywords": ["skills", "agents", "workflow"]
+      "category": "workflow",
+      "keywords": [
+        "tickets",
+        "jira",
+        "code-review",
+        "documentation",
+        "change-report"
+      ]
     }
   ]
 }
