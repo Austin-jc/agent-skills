@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "agent-skills",
+  "owner": {
+    "name": "Austin Con",
+    "url": "https://github.com/austin-jc"
+  },
+  "description": "Austin's collection of Claude Code agent skills",
+  "version": "0.1.0",
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "agent-skills",
+      "source": "./plugins/agent-skills",
+      "displayName": "Agent Skills",
+      "description": "A collection of reusable agent skills for Claude Code",
+      "version": "0.1.0",
+      "author": {
+        "name": "Austin Con",
+        "url": "https://github.com/austin-jc"
+      },
+      "repository": "https://github.com/austin-jc/agent-skills",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["skills", "agents", "workflow"]
+    }
+  ]
+}
